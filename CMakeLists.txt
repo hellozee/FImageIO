@@ -28,6 +28,14 @@ include_directories(include libjpeg_SOURCE_DIR)
 add_subdirectory(src)
 add_subdirectory(external/jpeg-9c)
 
+# Testing
+
+enable_testing()
+add_test(WorkerTests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/worker_tests)
+
+
+# Documentation
+
 if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
 	option(BUILD_DOC "Build documentation" ON)
 	set(DOXYGEN_SKIP_DOT false)
