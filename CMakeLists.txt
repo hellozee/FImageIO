@@ -24,8 +24,9 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(include)
+include_directories(include libjpeg_SOURCE_DIR)
 add_subdirectory(src)
+add_subdirectory(external/jpeg-9c)
 
 if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
 	option(BUILD_DOC "Build documentation" ON)
