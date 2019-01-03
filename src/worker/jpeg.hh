@@ -2,7 +2,7 @@
 
 #include "base.hh"
 
-#include <jpeglib.h>
+#include "jpeglib.h"
 #include <memory>
 #include <vector>
 
