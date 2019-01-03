@@ -24,9 +24,9 @@ endif()
 
 set(CMAKE_CXX_STANDARD 17)
 
+add_subdirectory(external/libjpeg)
 include_directories(include libjpeg_SOURCE_DIR)
 add_subdirectory(src)
-add_subdirectory(external/jpeg-9c)
 
 # Testing
 

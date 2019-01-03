@@ -1,4 +1,5 @@
 # CMakeLists.txt for workers
+
 set(WORKER_SOURCES
     jpeg.cc)
 
