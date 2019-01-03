@@ -31,6 +31,7 @@ add_subdirectory(src)
 # Testing
 
 enable_testing()
+file(COPY data DESTINATION .)
 add_test(WorkerTests ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/worker_tests)
 
 
