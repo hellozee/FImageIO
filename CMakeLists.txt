@@ -23,7 +23,6 @@ if( "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 endif()
 
 set(CMAKE_CXX_STANDARD 17)
-
 add_subdirectory(external/libjpeg)
 include_directories(include libjpeg_SOURCE_DIR)
 add_subdirectory(src)
