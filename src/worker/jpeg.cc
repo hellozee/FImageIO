@@ -1,6 +1,7 @@
 #include "jpeg.hh"
 
-fiio::jpeg::worker::worker(const std::string &filename)
+fiio::jpeg::worker::worker(const std::string &filename):
+    fiio::base(jpeg)
 {
     auto decompress_dt = [] ( ::jpeg_decompress_struct *ds){
         ::jpeg_destroy_decompress(ds);
@@ -57,7 +58,8 @@ fiio::jpeg::worker::worker(const std::string &filename)
     ::jpeg_finish_decompress(cinfo.get());
 }
 
-fiio::jpeg::worker::worker(const fiio::jpeg::worker& rhs)
+fiio::jpeg::worker::worker(const fiio::jpeg::worker& rhs):
+    fiio::base(jpeg)
 {
     _error_manager = rhs._error_manager;
     _pixels = rhs._pixels;
@@ -68,12 +70,12 @@ fiio::jpeg::worker::worker(const fiio::jpeg::worker& rhs)
 }
 
 void
-fiio::jpeg::worker::save(const std::string &filename, int quality)
+fiio::jpeg::worker::save(const std::string &filename)
 {
-    if(quality < 0)
-        quality = 0;
-    if(quality > 100)
-        quality = 100;
+    if(_quality < 0)
+        _quality = 0;
+    if(_quality > 100)
+        _quality = 100;
 
     auto file_dt = [] (FILE *file) {
         fclose(file);
@@ -101,7 +103,7 @@ fiio::jpeg::worker::save(const std::string &filename, int quality)
     cinfo->in_color_space = static_cast<::J_COLOR_SPACE>(_colorspace);
     cinfo->err = ::jpeg_std_error(_error_manager.get());
     ::jpeg_set_defaults(cinfo.get());
-    ::jpeg_set_quality(cinfo.get(), quality, true);
+    ::jpeg_set_quality(cinfo.get(), _quality, true);
     ::jpeg_start_compress(cinfo.get(), true);
 
     for(auto const& row_vector : _pixels){
