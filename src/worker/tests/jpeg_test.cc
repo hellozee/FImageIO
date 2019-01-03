@@ -1,7 +1,8 @@
-#include "../jpeg.hh"
+#include <jpeg.hh>
 
 int
 main()
 {
-    FIIO::jpeg::worker jpeg_worker("data/sample.jpg");
+    fiio::jpeg::worker jpeg_worker("data/sample.jpg");
+    jpeg_worker.save("data/jpg_copy_sample.jpg", 100);
 }

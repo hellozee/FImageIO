@@ -1,6 +1,6 @@
 #include "jpeg.hh"
 
-FIIO::jpeg::worker::worker(const std::string &filename)
+fiio::jpeg::worker::worker(const std::string &filename)
 {
     auto decompress_dt = [] ( ::jpeg_decompress_struct *ds){
         ::jpeg_destroy_decompress(ds);
@@ -57,7 +57,7 @@ FIIO::jpeg::worker::worker(const std::string &filename)
     ::jpeg_finish_decompress(cinfo.get());
 }
 
-FIIO::jpeg::worker::worker(const FIIO::jpeg::worker& rhs)
+fiio::jpeg::worker::worker(const fiio::jpeg::worker& rhs)
 {
     _error_manager = rhs._error_manager;
     _pixels = rhs._pixels;
@@ -68,7 +68,7 @@ FIIO::jpeg::worker::worker(const FIIO::jpeg::worker& rhs)
 }
 
 void
-FIIO::jpeg::worker::save(const std::string &filename, int quality)
+fiio::jpeg::worker::save(const std::string &filename, int quality)
 {
     if(quality < 0)
         quality = 0;
@@ -80,9 +80,9 @@ FIIO::jpeg::worker::save(const std::string &filename, int quality)
     };
 
     std::unique_ptr<FILE, decltype(file_dt)> outfile(
-                                        fopen(filename.c_str(), "rb"), file_dt);
+                                        fopen(filename.c_str(), "wb"), file_dt);
 
-    if(outfile == NULL){
+    if(outfile.get() == NULL){
         throw std::runtime_error("Could not open " + filename);
     }
 

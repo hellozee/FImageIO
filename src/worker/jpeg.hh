@@ -5,7 +5,7 @@
 #include <memory>
 #include <vector>
 
-namespace FIIO::jpeg{
+namespace fiio::jpeg{
     class worker{
         public:
             explicit worker(const std::string &filename);
