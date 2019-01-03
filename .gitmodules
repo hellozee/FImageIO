@@ -1,4 +1,0 @@
-[submodule "external/libjpeg"]
-	path = external/libjpeg
-	url = https://github.com/stohrendorf/libjpeg-cmake
-    ignore = dirty
