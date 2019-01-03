@@ -32,7 +32,7 @@ fiio::jpeg::worker::worker(const std::string &filename):
 
     ::jpeg_create_decompress(cinfo.get());
     ::jpeg_stdio_src(cinfo.get(), infile.get());
-    auto temp = ::jpeg_read_header(cinfo.get(), true);
+    auto temp = ::jpeg_read_header(cinfo.get(), TRUE);
     if(temp != 1){
         throw std::runtime_error("This is not JAYPEG.");
     }
@@ -103,8 +103,8 @@ fiio::jpeg::worker::save(const std::string &filename)
     cinfo->in_color_space = static_cast<::J_COLOR_SPACE>(_colorspace);
     cinfo->err = ::jpeg_std_error(_error_manager.get());
     ::jpeg_set_defaults(cinfo.get());
-    ::jpeg_set_quality(cinfo.get(), _quality, true);
-    ::jpeg_start_compress(cinfo.get(), true);
+    ::jpeg_set_quality(cinfo.get(), _quality, TRUE);
+    ::jpeg_start_compress(cinfo.get(), TRUE);
 
     for(auto const& row_vector : _pixels){
         ::JSAMPROW buffer[1];
