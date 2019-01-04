@@ -35,7 +35,9 @@ import ycm_core
 
 flags = [
     '-x',
-    'c',
+    'c++',
+    'isystem',
+    '-std=c++1z',
 ]
 
 
@@ -56,7 +58,7 @@ if os.path.exists( compilation_database_folder ):
 else:
   database = None
 
-SOURCE_EXTENSIONS = [ '.C', '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
+SOURCE_EXTENSIONS = [ '.C', '.cpp', '.cxx', '.cc', '.c']
 
 def DirectoryOfThisScript():
   return os.path.dirname( os.path.abspath( __file__ ) )
