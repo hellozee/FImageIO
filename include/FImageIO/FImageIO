@@ -1,1 +1,27 @@
 #pragma once
+
+#include <string>
+#include <memory>
+
+namespace fiio{
+
+    class base;
+
+    class image{
+
+    public:
+        explicit image(std::string fname);   
+        void save(std::string fname);
+        
+        inline std::string filename() { return _filename; }
+
+    private:
+        std::string _filename;
+        std::shared_ptr<fiio::base> _image_data;
+    };
+
+    enum class image_format{
+        jpeg,
+        png
+    };
+}
