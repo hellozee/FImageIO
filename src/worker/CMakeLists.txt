@@ -5,7 +5,7 @@ set(WORKER_SOURCES
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_library(worker STATIC ${WORKER_SOURCES})
-set_target_properties(worker PROPERTIES OUTPUT_NAME "FImageIO_worker")
+set_target_properties(worker PROPERTIES OUTPUT_NAME "fiioworker")
 target_link_libraries(
     worker
     libjpeg
