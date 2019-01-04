@@ -1,6 +1,5 @@
-#include <FImageIO/FImageIO>
 #include "worker/jpeg.hh"
-
+#include <FImageIO/FImageIO>
 #include <experimental/filesystem>
 
 namespace fs = std::experimental::filesystem;
@@ -11,7 +10,7 @@ fiio::image::image(std::string fname):
     fs::path p(fname); 
     auto extension = p.extension().u8string();
 
-    if(extension == ""){
+    if(extension.empty()){
         throw std::runtime_error("I am not sure about the format, please \
                                     give the file an extension");
     }
