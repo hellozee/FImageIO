@@ -27,10 +27,32 @@ add_subdirectory(external/libjpeg)
 include_directories(include external/libjpeg)
 add_subdirectory(src)
 
-get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-foreach(dir ${dirs})
-  message(STATUS "dir='${dir}'")
-endforeach()
+# Setting up clang-tidy
+find_program(
+    CLANG_TIDY_EXE
+    NAMES "clang-tidy"
+    DOC "Path to clang-tidy executable"
+    )
+if(NOT CLANG_TIDY_EXE)
+    message(STATUS "clang-tidy not found.")
+else()
+    message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
+    set(DO_CLANG_TIDY "${CLANG_TIDY_EXE}" "-checks=*,-clang-analyzer-alpha.*")
+endif()
+
+set_target_properties(
+    FImageIO PROPERTIES
+    CXX_STANDARD ${CMAKE_CXX_STANDARD}
+    CXX_STANDARD_REQUIRED ON
+    COMPILE_FLAGS "${WARNING_FLAGS}"
+)
+
+if(CLANG_TIDY_EXE)
+    set_target_properties(
+        FImageIO PROPERTIES
+    CXX_CLANG_TIDY "${DO_CLANG_TIDY}"
+    )
+endif()
 
 # Testing
 
