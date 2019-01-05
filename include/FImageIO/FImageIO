@@ -3,6 +3,8 @@
 #include <string>
 #include <memory>
 
+#include <FImageIO/config/base.hh>
+
 namespace fiio{
 
     class base;
@@ -20,8 +22,4 @@ namespace fiio{
         std::shared_ptr<fiio::base> _image_data;
     };
 
-    enum class image_format{
-        jpeg,
-        png
-    };
 }
