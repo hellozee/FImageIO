@@ -13,7 +13,7 @@ namespace fiio{
 
     public:
         explicit image(std::string fname);   
-        void save(std::string fname);
+        void save(std::string fname, fiio::config::base config);
         
         inline std::string filename() { return _filename; }
 

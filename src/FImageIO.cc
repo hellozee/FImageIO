@@ -1,4 +1,5 @@
 #include "worker/jpeg.hh"
+
 #include <FImageIO/FImageIO>
 #include <experimental/filesystem>
 
@@ -19,4 +20,10 @@ fiio::image::image(std::string fname):
             extension == "jif" || extension == "jfi" || extension == "jfif") {
        _image_data = std::make_shared<fiio::jpeg::worker>(fname); 
     }
+}
+
+void
+fiio::image::save(std::string fname, fiio::config::base config)
+{
+
 }
