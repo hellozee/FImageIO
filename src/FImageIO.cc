@@ -23,7 +23,16 @@ fiio::image::image(std::string fname):
 }
 
 void
-fiio::image::save(std::string fname, fiio::config::base config)
+fiio::image::save(const std::string &fname,
+        std::unique_ptr<fiio::config::base> config)
 {
+    switch (config->format()){
+        case fiio::image_format::jpeg:{
+            break;
+        }
 
+        case fiio::image_format::png:{
+            break;
+        }
+    }
 }
