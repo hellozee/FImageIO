@@ -23,3 +23,4 @@ namespace fiio{
     };
 
 }
+/* vim: set filetype=cpp: */
