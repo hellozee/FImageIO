@@ -6,7 +6,7 @@ fiio::config::jpeg::jpeg():
 }
 
 fiio::config::jpeg::jpeg(std::string fname):
-    fiio::config::base(fiio::image_format::jpeg)
+    fiio::config::base(fiio::image_format::jpeg, fname)
 {
 
 }
