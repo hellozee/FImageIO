@@ -16,18 +16,19 @@ namespace fiio{
         public:
             explicit image(std::string fname);   
             void save(const std::string &fname, 
-                    std::unique_ptr<fiio::config::base> config);
+                    std::shared_ptr<fiio::config::base> config);
             
             inline std::string filename() { return _filename; }
 
         private:
             void save_jpeg_config(const std::string &fname, 
-                                    std::unique_ptr<fiio::config::jpeg> config);
-            std::unique_ptr<fiio::config::jpeg> load_jpeg_config(
-                                                      const std::string &fname);
+                    std::shared_ptr<fiio::config::jpeg> config);
+            std::shared_ptr<fiio::config::jpeg> load_jpeg_config(
+                    const std::string &fname);
 
             std::string _filename;
             std::shared_ptr<fiio::worker::base> _image_data;
+            std::shared_ptr<fiio::config::base> _current_config;
     };
 
 }
