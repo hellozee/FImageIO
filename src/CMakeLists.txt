@@ -1,3 +1,4 @@
+add_subdirectory(config)
 add_subdirectory(worker)
 include_directories(${WORKER_INCLUDE_DIRECTORY} ${CMAKE_CURRENT_SOURCE_DIR})
 
