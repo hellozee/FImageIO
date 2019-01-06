@@ -3,7 +3,7 @@
 #include <string>
 #include <FImageIO/FImageIO>
 
-namespace fiio{
+namespace fiio::worker{
     class base{
         public:
             base(fiio::image_format f):

@@ -6,11 +6,11 @@
 #include <memory>
 #include <vector>
 
-namespace fiio::jpeg{
-    class worker : public fiio::base{
+namespace fiio::worker{
+    class jpeg : public fiio::worker::base{
         public:
-            explicit worker(const std::string &filename);
-            worker(const worker& rhs);
+            explicit jpeg(const std::string &filename);
+            jpeg(const jpeg& rhs);
 
             void save(const std::string &filename);
 

@@ -1,7 +1,7 @@
 #include "jpeg.hh"
 
-fiio::jpeg::worker::worker(const std::string &filename):
-    fiio::base(fiio::image_format::jpeg)
+fiio::worker::jpeg::jpeg(const std::string &filename):
+    fiio::worker::base(fiio::image_format::jpeg)
 {
     auto decompress_dt = [] ( ::jpeg_decompress_struct *ds){
         ::jpeg_destroy_decompress(ds);
@@ -58,8 +58,8 @@ fiio::jpeg::worker::worker(const std::string &filename):
     ::jpeg_finish_decompress(cinfo.get());
 }
 
-fiio::jpeg::worker::worker(const fiio::jpeg::worker& rhs):
-    fiio::base(fiio::image_format::jpeg)
+fiio::worker::jpeg::jpeg(const fiio::worker::jpeg& rhs):
+    fiio::worker::base(fiio::image_format::jpeg)
 {
     _error_manager = rhs._error_manager;
     _pixels = rhs._pixels;
@@ -70,7 +70,7 @@ fiio::jpeg::worker::worker(const fiio::jpeg::worker& rhs):
 }
 
 void
-fiio::jpeg::worker::save(const std::string &filename)
+fiio::worker::jpeg::save(const std::string &filename)
 {
     if(_quality < 0)
         _quality = 0;
